@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
@@ -85,6 +86,14 @@ Route::group(['middleware'=>'admin_auth'],function(){
     Route::post('admin/order/manage_order_process',[OrdersController::class,'manage_order_process'])->name('order.manage_order_process');
     Route::get('admin/order/delete/{id}',[OrdersController::class,'delete']);
     Route::get('admin/order/status/{status}/{id}',[OrdersController::class,'status']);
+
+    ///Brand///
+    Route::get('admin/brand',[BrandController::class,'index']);
+    Route::get('admin/brand/manage_brand',[BrandController::class,'manage_brand']);
+    Route::get('admin/brand/manage_brand/{id}',[BrandController::class,'manage_brand']);
+    Route::post('admin/brand/manage_brand_process',[BrandController::class,'manage_brand_process'])->name('brand.manage_brand_process');
+    Route::get('admin/brand/delete/{id}',[BrandController::class,'delete']);
+    Route::get('admin/brand/status/{status}/{id}',[BrandController::class,'status']);
 
 });
 

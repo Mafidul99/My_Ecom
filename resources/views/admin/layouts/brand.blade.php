@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title') {{'Color'}} @endsection
+@section('title') {{'Brand'}} @endsection
 @section('container')
 <div class="page-wrapper">
     <div class="page-content">
@@ -12,14 +12,14 @@
                         <li class="breadcrumb-item">
                             <a href="{{url('admin/dashboard')}}"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Colors</li>
+                        <li class="breadcrumb-item active" aria-current="page">Brand</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{url('admin/color/manage_color')}}" class="btn btn-primary radius-30 mt-2 mt-lg-0">
-                        <i class="bx bxs-plus-square"></i>Add Colors</a>
+                    <a href="{{url('admin/brand/manage_brand')}}" class="btn btn-primary radius-30 mt-2 mt-lg-0">
+                        <i class="bx bxs-plus-square"></i>Add Brand</a>
                 </div>
             </div>
         </div>
@@ -31,7 +31,8 @@
                         <thead class="table-light">
                             <tr>
                                 <th>ID</th>
-                                <th>Color</th>
+                                <th>Brand</th>
+                                <th>Image</th>
                                 <th>Active/Inactive</th>
                                 <th>Actions</th>
                             </tr>
@@ -40,23 +41,24 @@
                             @foreach ($data as $list)
                             <tr>
                                 <td>{{$list->id}}</td>
-                                <td>{{$list->color}}</td>
+                                <td>{{$list->name_brand}}</td>
+                                <td>{{$list->image}}</td>
                                 <td>
                                     @if ($list->status==1)
-                                    <a href="{{url('admin/color/status/0/')}}/{{$list->id}}">
+                                    <a href="{{url('admin/brand/status/0/')}}/{{$list->id}}">
                                         <button class="btn btn-success px-4 radius-30">Active</button>
                                       </a>
                                       @elseif ($list->status==0)
-                                      <a href="{{url('admin/color/status/1/')}}/{{$list->id}}">
+                                      <a href="{{url('admin/brand/status/1/')}}/{{$list->id}}">
                                         <button class="btn btn-danger px-4 radius-30">Inactive</button>
                                       </a>
                                     @endif
                                 </td>
                                 <td>
                                     <div class="d-flex order-actions">
-                                        <a href="{{url('admin/color/manage_color/')}}/{{$list->id}}">
+                                        <a href="{{url('admin/brand/manage_brand/')}}/{{$list->id}}">
                                             <i class="bx bx-edit primary"></i></a>
-                                        <a href="{{url('admin/color/delete/')}}/{{$list->id}}" class="ms-3">
+                                        <a href="{{url('admin/brand/delete/')}}/{{$list->id}}" class="ms-3">
                                             <i class='bx bx-trash danger'></i></a>
                                     </div>
                                 </td>

@@ -38,6 +38,9 @@
             <li> <a href="{{url('admin/color')}}">
                 <i class="bx bx-right-arrow-alt"></i>Color</a>
             </li>
+            <li> <a href="{{url('admin/brand')}}">
+                <i class="bx bx-right-arrow-alt"></i>Brand</a>
+            </li>
             <li> <a href="{{url('admin/product/manage_product')}}">
                 <i class="bx bx-right-arrow-alt"></i>Add New Products</a>
             </li>
