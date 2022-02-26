@@ -42,7 +42,11 @@
                             <tr>
                                 <td>{{$list->id}}</td>
                                 <td>{{$list->name_brand}}</td>
-                                <td>{{$list->image}}</td>
+                                <td>
+                                    @if ($list->image!='')
+                                   <img width="50px" src="{{asset('storage/media/brand/'.$list->image)}}"/>
+                                   @endif
+                               </td>
                                 <td>
                                     @if ($list->status==1)
                                     <a href="{{url('admin/brand/status/0/')}}/{{$list->id}}">

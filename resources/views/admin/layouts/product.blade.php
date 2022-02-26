@@ -35,6 +35,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Slug</th>
+                                <th>Brand</th>
                                 <th>Image</th>
                                 <th>Active/Inactive</th>
                                 <th>Actions</th>
@@ -46,6 +47,7 @@
                                 <td>{{$list->id}}</td>
                                 <td>{{$list->name}}</td>
                                 <td>{{$list->slug}}</td>
+                                <td>{{$list->name_brand}}</td>
                                  <td>
                                      @if ($list->image!='')
                                     <img width="50px" src="{{asset('storage/media/'.$list->image)}}"/>

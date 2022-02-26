@@ -79,8 +79,19 @@
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label for="brand">Brand</label>
-                                        <input id="brand" value="{{$brand}}" name="brand" type="text" class="form-control"
-                                            aria-required="true" aria-invalid="false" placeholder="Enter Brand" required>
+                                        <select id="brand"  name="brand" type="text" class="form-select"
+                                            aria-required="true" aria-invalid="false" required>
+                                            <option value="">Select Brand</option>
+                                            @foreach ($brands as $list)
+                                            @if ($brand==$list->id)
+                                            <option selected value="{{$list->id}}">
+                                                @else
+                                            <option value="{{$list->id}}">
+                                                @endif
+                                                {{$list->name_brand}}
+                                            </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label for="model">Model</label>

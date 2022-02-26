@@ -76,6 +76,8 @@ class ProductController extends Controller
 
             $result['colors']=DB::table('colors')->where(['status'=>1])->get();
 
+            $result['brands']=DB::table('brands')->where(['status'=>1])->get();
+
         return view('admin.layouts.manage_product',$result);
 
     }
@@ -143,13 +145,13 @@ class ProductController extends Controller
             $model->save();
             $pid=$model->id;
 
-            /*---------------*/
+            /*--------product image-------*/
             foreach($skuArr as $key=>$val){
                 $productAttrArr['product_id']=$pid;
                 $productAttrArr['sku']=$skuArr[$key];
-                $productAttrArr['mrp']=$mrpArr[$key];
-                $productAttrArr['price']=$priceArr[$key];
-                $productAttrArr['qty']=$qtyArr[$key];
+                $productAttrArr['mrp']=(int)$mrpArr[$key];
+                $productAttrArr['price']=(int)$priceArr[$key];
+                $productAttrArr['qty']=(int)$qtyArr[$key];
 
                 if($size_idArr[$key]==''){
                     $productAttrArr['size_id']=0;
@@ -175,16 +177,14 @@ class ProductController extends Controller
                         $productAttrArr['attr_image']='';
                     }
 
-                if($paidArr[$key]!=''){
-                    DB::table('products_attr')->where(['id'=>$paidArr[$key]])->update($productAttrArr);
-                }else{
-                    DB::table('products_attr')->insert($productAttrArr);
-                }
-
-
+                    if($paidArr[$key]!=''){
+                        DB::table('products_attr')->where(['id'=>$paidArr[$key]])->update($productAttrArr);
+                    }else{
+                        DB::table('products_attr')->insert($productAttrArr);
+                    }
 
             }
-            /*-----------------*/
+            /*---------product image end--------*/
             //$request->session()->flash('message',$msg);
             return redirect('admin/product')->with('message',$msg);
         }

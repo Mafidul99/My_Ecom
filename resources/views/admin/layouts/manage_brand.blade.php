@@ -2,6 +2,15 @@
 @section('title') {{'Manage Brand'}} @endsection
 
 @section('container')
+@if($id>0)
+    @php
+        $image_reqired="";
+    @endphp
+    @else
+    @php
+        $image_reqired="required";
+    @endphp
+    @endif
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
@@ -33,11 +42,11 @@
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="border border-3 p-4 rounded">
-                                <form action="{{route('brand.manage_brand_process')}}" method="post">
+                                <form action="{{route('brand.manage_brand_process')}}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="mb-3">
-                                        <label for="brand" class="control-label mb-1">Brand</label>
+                                        <label for="brand" class="control-label mb-1">Brand Name</label>
                                         <input id="brand" value="{{$name_brand}}" name="name_brand" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                                     </div>
                                             @error('name_brand')
@@ -46,6 +55,19 @@
                                             </div>
                                             @enderror
                                     <div>
+                                        <div class="mb-3">
+                                            <label for="image" class="form-label">Brand Image</label>
+                                        <input id="image" name="image" type="file" class="form-control" aria-required="true"
+                                         aria-invalid="false" {{$image_reqired}}>
+                                         @error('image')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                        @if ($image!='')
+                                        <img width="50px" src="{{asset('storage/media/brand/'.$image)}}"/>
+                                        @endif
+                                        </div>
                                         <button id="payment-button" type="submit" class="btn btn-primary">
                                             Save Brand
                                         </button>

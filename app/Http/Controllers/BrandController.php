@@ -21,10 +21,12 @@ class BrandController extends Controller
             $arr=Brand::where(['id'=>$id])->get();
 
             $result['name_brand']=$arr['0']->name_brand;
+            $result['image']=$arr['0']->image;
             $result['status']=$arr['0']->status;
             $result['id']=$arr['0']->id;
         }else{
             $result['name_brand']='';
+            $result['image']='';
             $result['status']='';
             $result['id']=0;
         }
@@ -36,7 +38,9 @@ class BrandController extends Controller
         {
             //return $request->post();
             $request->validate([
+                'image'=>'mimes:png,jpg,jpeg',
                 'name_brand'=>'required|unique:brands,name_brand,'.$request->post('id'),
+
             ]);
 
 
@@ -47,6 +51,14 @@ class BrandController extends Controller
                 $model=new Brand();
                 $msg="Brand Inserted";
             }
+            if($request->hasfile('image')){
+                $image=$request->file('image');
+                $ext=$image->extension();
+                $image_name=time().'.'.$ext;
+                $image->storeAs('/public/media/brand/',$image_name);
+                $model->image=$image_name;
+            }
+
             $model->name_brand=$request->post('name_brand');
             $model->status=1;
             $model->save();
