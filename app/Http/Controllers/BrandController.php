@@ -36,7 +36,6 @@ class BrandController extends Controller
         {
             //return $request->post();
             $request->validate([
-                //'category_name'=>'required',//
                 'name_brand'=>'required|unique:brands,name_brand,'.$request->post('id'),
             ]);
 
