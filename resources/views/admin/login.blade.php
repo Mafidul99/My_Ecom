@@ -74,6 +74,9 @@
                                                                 <i class="bx bxs-lock-open"></i>Sign in</button>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12">
+                                                        New on our platform? <a href="#"> Create an account </a>
+                                                    </div>
 
                                         </form>
 									</div>
