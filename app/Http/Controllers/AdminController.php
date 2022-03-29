@@ -35,7 +35,7 @@ class AdminController extends Controller
         //$result=Admin::where(['email'=>$email,'password'=>$password])->get();
         $result=Admin::where(['email'=>$email])->first();
             if($result){
-                if(Hash::check($request->post('password'),$result->password)){
+                if(Hash::check($request->post('password'),$result->$password)){
                     $request->session()->put('ADMIN_LOGIN',true);
                     $request->session()->put('ADMIN_ID',$result->id);
                     return redirect('admin/dashboard');
